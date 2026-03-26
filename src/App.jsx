@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Header from "./components/Header.jsx"
 import "./App.css"
 import LensPage from './pages/LensPage.jsx'
@@ -9,7 +9,25 @@ import { lenses as defaultLenses } from "./data/lenses"
 import { Toaster } from "react-hot-toast"
 
 const App = () => {
+  const scrollPositions = useRef({});
   const location = useLocation();
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollPositions.current[location.pathname] = window.scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    const savedPosition = scrollPositions.current[location.pathname];
+
+    if (savedPosition !== undefined) {
+      window.scrollTo(0, savedPosition);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [location]);
   const [lenses, setLenses] = useState(defaultLenses);
   const [counter, setCounter] = useState(defaultLenses.length);
   function addLens(newLens){
