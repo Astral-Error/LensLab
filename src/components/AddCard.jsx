@@ -40,7 +40,7 @@ const AddCard = ({closeModal, counter, addLens}) =>{
         closeModal();
     }
     return (
-        <div className="modal-overlay">
+        <div className={`modal-overlay ${closing ? "closing" : ""}`}>
             <div className={`modal-card ${closing ? "closing" : ""}`}>
                 <div className="modal-header">
                     <h2>Add Lens</h2>
