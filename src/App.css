@@ -284,8 +284,15 @@ a {
     color:white;
 }
 
-.search-bar{
+.searchbar-head{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 30%;
+}
+
+.search-bar{
+    width: 100%;
 }
 
 #search-bar{
