@@ -561,4 +561,25 @@ body {
     #home-id{
         display: none;
     }
+    .modal-card form{
+        grid-template-columns: 1fr;
+    }
+    .modal-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20vw;
+    }
+    .lens-details-card{
+        width:70vw;
+        padding:30px;
+        border-radius:20px;
+        margin-top: 100px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+
+        border:1px solid rgba(255,255,255,0.18);
+        box-shadow:0 8px 32px rgba(0,0,0,0.37);
+    }
 }
