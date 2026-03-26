@@ -9,9 +9,11 @@ const Header = ({setSearchText, openModal }) => {
       <h3 className="logo">
         Lens<span>Lab</span>
       </h3>
+      <div className="searchbar-head">
       <SearchBar setSearchText={setSearchText} />
+      </div>  
       <nav className="nav-links">
-        <Link to="/">Home</Link>
+        <Link id="home-id" to="/">Home</Link>
         <button id="add" onClick={openModal}><a>+</a></button>
       </nav>
     </div>
