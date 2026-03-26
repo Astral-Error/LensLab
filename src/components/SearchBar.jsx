@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "../App.css"
 
 const SearchBar = ({setSearchText}) => {
-    const handleChange = (e) => {
+    function handleChange(e){
         setSearchText(e.target.value)
     }
     return (

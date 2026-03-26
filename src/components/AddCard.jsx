@@ -14,28 +14,22 @@ const AddCard = ({closeModal, counter, addLens}) =>{
         mount:"",
         wght:""
     })
-    const handleChange = (e)=>{
-        setLens({
-        ...lens,
-        [e.target.name]: e.target.value
-        })
+    function handleChange(e){
+        setLens({...lens,[e.target.name]: e.target.value});
     }
-    const handleClose = () => {
+    function handleClose(){
         setClosing(true);
         setTimeout(() => {
             closeModal();
         }, 200);
     };
-    const handleSubmit = (e)=>{
+    function handleSubmit(e){
         e.preventDefault();
         if(lens.name===""||lens.brand===""||lens.fl===""||lens.aperture===""||lens.mount===""||lens.wght===""){
             toast.error("Can't have empty fields");
             return;
         }
-        addLens({
-            ...lens,
-            id: counter+1
-        }); 
+        addLens({...lens,id: counter+1}); 
         toast.success("Lens has been added");
         closeModal();
     }
