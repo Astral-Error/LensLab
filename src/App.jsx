@@ -42,25 +42,26 @@ const App = () => {
   const [searchText, setSearchText] = useState("");
   const [showModal, setShowModal] = useState(false);
   return (
-    <div className="app">
+    <>
       <Toaster />
       <Header setSearchText={setSearchText} 
         openModal={()=>setShowModal(true)}/>
+      <div className="app">
+        {showModal && 
+          <AddCard 
+          closeModal={()=>setShowModal(false)}
+          addLens={addLens}
+          counter={counter}
+          />}
 
-      {showModal && 
-        <AddCard 
-        closeModal={()=>setShowModal(false)}
-        addLens={addLens}
-        counter={counter}
-        />}
-
-      <div key={location.pathname} className="page-container">
-        <Routes location={location}>
-          <Route path="/" element={<Home lenses={lenses} searchText={searchText}/>} />
-          <Route path="/lens/:id" element={<LensPage lenses={lenses}/>} />
-        </Routes>
+        <div key={location.pathname} className="page-container">
+          <Routes location={location}>
+            <Route path="/" element={<Home lenses={lenses} searchText={searchText}/>} />
+            <Route path="/lens/:id" element={<LensPage lenses={lenses}/>} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
