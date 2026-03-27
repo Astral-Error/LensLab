@@ -10,5 +10,9 @@ body {
         radial-gradient(ellipse 42% 55% at 76% 56%, rgba(30, 172, 148, 0.88) 0%, transparent 58%),
         radial-gradient(ellipse 75% 75% at 63% 48%, rgba(90, 55, 10, 0.45) 0%, transparent 78%),
         #080806;
-    background-attachment: fixed; /* keeps it pinned like position:fixed did */
+    background-attachment: fixed;
+}
+html, body {
+    height: 100%;
+    overflow: hidden;
 }
