@@ -3,3 +3,12 @@ body{
     padding: 0;
     background: #080806;
 }
+body {
+    background:
+        radial-gradient(ellipse 55% 70% at 60% 44%, rgba(210, 105, 20, 0.92) 0%, transparent 60%),
+        radial-gradient(ellipse 38% 42% at 70% 36%, rgba(195, 155, 30, 0.70) 0%, transparent 55%),
+        radial-gradient(ellipse 42% 55% at 76% 56%, rgba(30, 172, 148, 0.88) 0%, transparent 58%),
+        radial-gradient(ellipse 75% 75% at 63% 48%, rgba(90, 55, 10, 0.45) 0%, transparent 78%),
+        #080806;
+    background-attachment: fixed; /* keeps it pinned like position:fixed did */
+}
