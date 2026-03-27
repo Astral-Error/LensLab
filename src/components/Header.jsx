@@ -19,5 +19,4 @@ const Header = ({setSearchText, openModal }) => {
     </div>
   )
 }
-//vercel test
 export default Header
