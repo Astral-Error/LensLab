@@ -9,67 +9,59 @@ import { lenses as defaultLenses } from "./data/lenses"
 import { Toaster } from "react-hot-toast"
 
 const App = () => {
-  const scrollRef = useRef(null);
   const scrollPositions = useRef({});
   const location = useLocation();
-
   useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
     const handleScroll = () => {
-      scrollPositions.current[location.pathname] = container.scrollTop;
+      scrollPositions.current[location.pathname] = window.scrollY;
     };
 
-    container.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     const savedPosition = scrollPositions.current[location.pathname];
+
     if (savedPosition !== undefined) {
-      container.scrollTop = savedPosition;
+      window.scrollTo(0, savedPosition);
     }
 
-    return () => container.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [location]);
-
   const [lenses, setLenses] = useState(defaultLenses);
   const [counter, setCounter] = useState(defaultLenses.length);
-
-  function addLens(newLens) {
-    const scrollTop = scrollRef.current?.scrollTop ?? 0;
-    setLenses(prev => [...prev, newLens]);
-    setCounter(prev => prev + 1);
+  function addLens(newLens){
+    const scrollY = window.scrollY;
+    setLenses(prev=>[...prev,newLens]);
+    setCounter(prev=>prev+1);
     requestAnimationFrame(() => {
-      if (scrollRef.current) scrollRef.current.scrollTop = scrollTop;
+      window.scrollTo(0, scrollY);
     });
   }
 
   const [searchText, setSearchText] = useState("");
   const [showModal, setShowModal] = useState(false);
-
   return (
-    <>
+    <div className="app">
       <Toaster />
-      
+      <Header setSearchText={setSearchText} 
+        openModal={()=>setShowModal(true)}/>
 
-      {showModal &&
-        <AddCard
-          closeModal={() => setShowModal(false)}
-          addLens={addLens}
-          counter={counter}
+      {showModal && 
+        <AddCard 
+        closeModal={()=>setShowModal(false)}
+        addLens={addLens}
+        counter={counter}
         />}
 
-      {}
-      <div className="scroll-container" ref={scrollRef}>
-        <Header setSearchText={setSearchText} openModal={() => setShowModal(true)} />
-        <div key={location.pathname} className="page-container">
-          <Routes location={location}>
-            <Route path="/" element={<Home lenses={lenses} searchText={searchText} />} />
-            <Route path="/lens/:id" element={<LensPage lenses={lenses} />} />
-          </Routes>
-        </div>
+      <div key={location.pathname} className="page-container">
+        <Routes location={location}>
+          <Route path="/" element={<Home lenses={lenses} searchText={searchText}/>} />
+          <Route path="/lens/:id" element={<LensPage lenses={lenses}/>} />
+        </Routes>
       </div>
-    </>
-  );
-};
+    </div>
+  )
+}
 
 export default App
