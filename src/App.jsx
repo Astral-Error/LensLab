@@ -49,7 +49,7 @@ const App = () => {
   return (
     <>
       <Toaster />
-      <Header setSearchText={setSearchText} openModal={() => setShowModal(true)} />
+      
 
       {showModal &&
         <AddCard
@@ -60,6 +60,7 @@ const App = () => {
 
       {}
       <div className="scroll-container" ref={scrollRef}>
+        <Header setSearchText={setSearchText} openModal={() => setShowModal(true)} />
         <div key={location.pathname} className="page-container">
           <Routes location={location}>
             <Route path="/" element={<Home lenses={lenses} searchText={searchText} />} />
