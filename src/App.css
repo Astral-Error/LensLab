@@ -177,6 +177,7 @@ a {
     position: fixed;
     transform: translateZ(0);
     will-change: transform;
+    z-index: 10;
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -188,7 +189,6 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 2;
 }
 
 .nav-links{
@@ -507,9 +507,11 @@ a {
 @keyframes pageFade{
   from{
     opacity:0;
+    transform: translateY(10px);
   }
   to{
     opacity:1;
+    transform: translateY(0);
   }
 }
 
